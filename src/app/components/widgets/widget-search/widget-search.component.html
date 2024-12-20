@@ -1,0 +1,10 @@
+<div class="search_input-container">
+  <i class="bi bi-search text-white me-2 search-icon"></i>
+  <input
+    class="search-input"
+    [(ngModel)]="filterText"
+    (ngModelChange)="handleSearchChange($event)"
+    placeholder="Search..."
+  />
+  <i class="clear-icon icon-close bi bi-x-lg" (click)="handleClearInput()"></i>
+</div>

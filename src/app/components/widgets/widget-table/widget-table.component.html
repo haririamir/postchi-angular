@@ -1,0 +1,87 @@
+<div class="dataTables_wrapper dt-bootstrap4 no-footer">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-dark">
+      <thead class="custom-header">
+        <tr role="row">
+          @if(!!actions && actions.length > 0){
+          <th style="width: 1px">Operations</th>
+          } @for (column of columns; track $index) {
+          <th [ngStyle]="{ 'min-width': column.width || 'auto' }">
+            <ng-container *ngIf="!column.sortable">
+              {{ column.label }}
+            </ng-container>
+          </th>
+          }
+        </tr>
+      </thead>
+
+      <tbody *ngIf="items && items && items.length > 0">
+        <tr
+          role="row"
+          *ngFor="let item of items; let i = index"
+          [ngClass]="{ odd: i % 2 === 1, even: i % 2 === 0 }"
+        >
+          <td class="" *ngIf="!!actions && actions.length > 0">
+            <div class="actions">
+              <span
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                *ngFor="let action of actions"
+                type="button"
+                class="btn m-1 p-0"
+                [title]="action.title"
+                (click)="onClick(item, action.type)"
+              >
+                <i
+                  style="font-size: 0.9rem"
+                  class="text-light"
+                  [class]="action.icon"
+                ></i>
+              </span>
+            </div>
+          </td>
+          <td
+            *ngFor="let column of columns"
+            [ngStyle]="{ width: column.type ? '110px' : '' }"
+            [class]="classTd"
+          >
+            <ng-container *ngIf="!!column.type">
+              <ng-container [ngSwitch]="column.type">
+                <ng-container *ngSwitchCase="'lock'">
+                  <span
+                    class="severity bg-DISABLED text-white w-100 d-block"
+                    *ngIf="item[column.key] === true"
+                  >
+                    Locked
+                  </span>
+                  <span
+                    class="severity bg-success text-white w-100 d-block py-1"
+                    *ngIf="item[column.key] === false"
+                  >
+                    Unlocked
+                  </span>
+                </ng-container>
+                <ng-container *ngSwitchCase="'severity'">
+                  <div class="severity bg-{{ item[column.key] }}">
+                    <span class="text-dark">{{ item[column.key] }}</span>
+                  </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'date'">
+                  <span>{{
+                    item[column.key]
+                      | date : "yyyy-MM-dd HH:mm:ss" : "Asia/Tehran"
+                  }}</span>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <span *ngIf="!column.type">{{ item[column.key] }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="items.length === 0" class="text-center no-data-message">
+      No data available.
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<table-header title="Users">
+  <widget-search (onSearchChange)="onSearchChange($event)"></widget-search>
+</table-header>
+<table class="table table-bordered table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Username</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">City</th>
+      <th scope="col">Company</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of filteredData; track $index) {
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.address.city }}</td>
+      <td>{{ user.company.name }}</td>
+      <td>{{ user.phone }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-secondary d-flex align-items-center gap-1"
+          (click)="handleUsersPost(user)"
+        >
+          <i class="bi bi-pen"></i>Posts
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

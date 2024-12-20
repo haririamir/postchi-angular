@@ -1,0 +1,93 @@
+.widget-table {
+  tr.odd {
+    background: #fdfdfd;
+  }
+
+  td,
+  th {
+    padding: 1px 10px;
+    border: solid 1px #ddd !important;
+    text-align: left;
+    font-weight: 600;
+
+    .severity {
+      width: 110px;
+      padding: 5px 20px;
+      text-align: center;
+    }
+  }
+
+  th {
+    padding: 10px;
+  }
+
+  thead {
+    .sorting,
+    .sorting_desc,
+    .sorting_asc {
+      width: 10px;
+    }
+  }
+
+  td.node-name {
+    min-width: 175px;
+  }
+
+  td.node-type {
+    min-width: 85px;
+  }
+
+  td.location {
+    min-width: 250px;
+
+    & > div {
+      width: 240px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  td.board-type {
+    min-width: 95px;
+  }
+
+  td.additional-info {
+    min-width: 300px;
+
+    & > div {
+      width: 290px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  td.node-info {
+    min-width: 115px;
+    & > div {
+      width: 105px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+::ng-deep .multiselect .mat-checkbox-frame {
+  //border-color: #d1d1d1;
+  //border-width: 1px;
+  //border-style: solid;
+  border: 1.9px solid rgba(94, 105, 115, 0.95);
+}
+.no-data-message {
+  padding: 20px;
+  font-size: 16px;
+  color: #888;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 100px;
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  margin: 23px 0;
+}
